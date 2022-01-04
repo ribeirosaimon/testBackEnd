@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<body>
+    <h1>Add Place</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Save</button>
+    </form>
+</body>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Latitude</th>
+            <th>Longetude</th>
+            <th>Timestamp</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for x in objects %}
+        <tr>
+            <td>{{ x.id }}</td>
+            <td>{{ x.name }}</td>
+            <td>{{ x.lat }}</td>
+            <td>{{ x.log }}</td>
+            <td>{{ x.timestamp }}</td>
+            <td>
+                <form method="post" id="{{ x.id }}">
+                    {% csrf_token %}
+                    <a  href="{% url 'update_place'  x.id  %}">Update</a>
+                </form>
+            </td>
+            <td>
+                <form method="post" id="{{ x.id }}">
+                    {% csrf_token %}
+                    <a  href="{% url 'delete_place'  x.id  %}">Delete</a>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+{% endblock %}

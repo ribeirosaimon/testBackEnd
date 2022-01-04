@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container h-60">
+    <div class="row h-60 justify-content-center align-items-center">
+        <form class="form-signin col-6" method="post" autocomplete="off">
+        {% csrf_token %}
+        <p> Backend Test </p>
+        <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+        <label for="username" class="sr-only">E-mail</label>
+        <input type="text" id="username" name="username" class="form-control" placeholder="e-mail" required autofocus>
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="password" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+      </form>   
+    </div>
+  </div>
+{% endblock %}
