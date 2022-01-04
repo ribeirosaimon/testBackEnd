@@ -6,6 +6,7 @@ class Place(models.Model):
     name = models.CharField("Name", max_length=100)
     lat = models.CharField("Latitude", max_length=100)
     log = models.CharField("Longetude", max_length=100)
+    visit = models.BooleanField()
     timestamp = models.DateField("Date")
 
     class Meta:

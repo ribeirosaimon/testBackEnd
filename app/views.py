@@ -20,8 +20,16 @@ class PlaceListView(LoginRequiredMixin, FormView):
     success_url = reverse_lazy('PlaceForm')
 
     def get_context_data(self, *args, **kwargs):
+        visit=False
         context = super(PlaceListView, self).get_context_data(**kwargs)
-        context['objects'] = Place.objects.filter(usuario=self.request.user)  
+        context['objects'] = Place.objects.filter(user=self.request.user)  
+        if self.request.GET.get("search_visit") == "on":
+            visit = True
+        if self.request.GET.get("search_name") or self.request.GET.get("search_timestamp") or visit:
+            context['objects'] = Place.objects.filter(user=self.request.user,
+                name__icontains=self.request.GET.get("search_name"),
+                timestamp__icontains=self.request.GET.get("search_timestamp"),
+                visit=visit)
         return context
 
     def form_valid(self,form,*args,**kwargs):

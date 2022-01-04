@@ -9,13 +9,30 @@
     </form>
 </body>
 
+<div>
+    <form action="." method="GET">
+        {% csrf_token %}
+        <a>name</a>
+        <input type="text" id="search_name" name="search_name" placeholder="name">
+        <a>timestamp</a>
+        <input type="datetime" id="search_timestamp" name="search_timestamp" placeholder="AAAA-MM-DD ">
+        <a>Visit</a>
+        <input type="checkbox" id="search_visit" name="search_visit" placeholder="visit">
+        <input type="submit" value="OK">
+    </form>
+
+</div>
+
+
 <table>
     <thead>
         <tr>
+            <th>id</th>
             <th>Name</th>
             <th>Latitude</th>
             <th>Longetude</th>
             <th>Timestamp</th>
+            <th>Visit</th>
         </tr>
     </thead>
     <tbody>
@@ -26,6 +43,7 @@
             <td>{{ x.lat }}</td>
             <td>{{ x.log }}</td>
             <td>{{ x.timestamp }}</td>
+            <td>{{ x.visit }}</td>
             <td>
                 <form method="post" id="{{ x.id }}">
                     {% csrf_token %}

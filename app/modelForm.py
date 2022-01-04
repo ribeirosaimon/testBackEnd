@@ -5,4 +5,4 @@ from .models import Place
 class PlaceForm(forms.ModelForm):
     class Meta:
         model = Place
-        fields = "__all__"
+        fields = ["name","log","lat","timestamp", "visit"]
