@@ -3,22 +3,6 @@ version: '3'
 services:
   web:
     build: .
-    command: /bin/sh -c starter.sh
-    volumes:
-      - .:/code
+    command: python manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
-    depends_on:
-      - db
-  db:
-    image: postgres
-    container_name: pgdb
-    volumes:
-      - ./data/db:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=place
-      - POSTGRES_PASSEWORD=postgres
-
-volumes:
-  postgres_data:
