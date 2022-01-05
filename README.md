@@ -6,9 +6,10 @@ Bom dia,
 * sudo docker-compose up -d --build
 * sudo docker-compose exec web python manage.py makemigrations app --noinput
 * sudo docker-compose exec web python manage.py migrate --noinput
-* 
+
+
  Aqui você deve criar o admin que fará login
-*sudo docker-compose exec web python manage.py createsuperuser
+* sudo docker-compose exec web python manage.py createsuperuser
 
 
 ---------------------------
