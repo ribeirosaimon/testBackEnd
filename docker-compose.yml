@@ -1,25 +1,24 @@
 version: '3'
 
 services:
-  django:
+  web:
     build: .
-    container_name: django
-    command: python manage.py runserver 0.0.0.0:8000
+    command: /bin/sh -c starter.sh
     volumes:
-      - .:/usr/src/app/
+      - .:/code
     ports:
-      - 8000:8000
+      - "8000:8000"
     depends_on:
       - db
   db:
     image: postgres
     container_name: pgdb
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      - ./data/db:/var/lib/postgresql/data
     environment:
-      - POSTGRES_USER=postgresql
-      - POSTGRES_PASSWORD=hello_django
-      - POSTGRES_DB=hello_django_dev
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=place
+      - POSTGRES_PASSEWORD=postgres
 
 volumes:
   postgres_data:
